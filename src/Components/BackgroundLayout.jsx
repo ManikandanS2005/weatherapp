@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useStateContext } from '../Context'
 import Clear from '../assets/images/Clear.jpg'
-import Fog from '../assets/images/Fog.png'
+import Fog from '../assets/images/fog.png'
 import Cloudy from '../assets/images/Cloudy.jpg'
 import Rainy from '../assets/images/Rainy.jpg'
-import Snow from '../assets/images/Snow.jpg'
+import Snow from '../assets/images/snow.jpg'
 import Stromy from '../assets/images/Stormy.jpg'
 import Sunny from '../assets/images/Sunny.jpg'
 
