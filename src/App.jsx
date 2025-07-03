@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import search from './assets/icons/search.svg';
 import location from './assets/icons/location.svg'; // location icon
 import { useStateContext } from './Context';
@@ -15,6 +15,11 @@ const App = () => {
     setPlace(input);
     setInput('');
   };
+  useEffect(() => {
+  console.log("Weather conditions:", weather.conditions)
+  // existing logic
+}, [weather])
+
 
   const fetchUserLocation = () => {
     if (navigator.geolocation) {

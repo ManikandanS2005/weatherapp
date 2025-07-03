@@ -31,7 +31,7 @@ export const StateContextProvider = ({ children }) => {
 
     try {
       const res = await axios.request(options);
-      console.log(res.data);
+    
       const thisData = Object.values(res.data.locations)[0];
       setLocation(thisData.address);
       setValues(thisData.values);
@@ -48,9 +48,7 @@ export const StateContextProvider = ({ children }) => {
   }, [place]);
 
   // 4. useEffect to log values when updated
-  useEffect(() => {
-    console.log(values);
-  }, [values]);
+ 
 
   return (
     <StateContext.Provider value={{ weather, setPlace, values, thisLocation ,place}}>

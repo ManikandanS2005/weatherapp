@@ -7,51 +7,40 @@ import snow from '../assets/icons/snow.png'
 import storm from '../assets/icons/storm.png'
 import windy from '../assets/icons/windy.png'
 import '../index.css'
-import '../index.css'
 
-const MiniCard = ({time,temp,iconString}) => {
-  const[icon,setIcons]=useState('')
-  
-  useEffect(()=>{
-    if(iconString){
-        if(iconString.toLowerCase().includes('cloud')){
-          setIcons(cloud)
-        }
-         else if(iconString.toLowerCase().includes('fog')){
-          setIcons(fog)
-        }
-         else if(iconString.toLowerCase().includes('rain')){
-          setIcons(rain)
-        }
-         else if(iconString.toLowerCase().includes('snow')){
-          setIcons(snow)
-        }
-         else if(iconString.toLowerCase().includes('storm') ||iconString.toLowerCase().includes('thunder')){
-          setIcons(storm)
-        }
-         else if(iconString.toLowerCase().includes('windy')){
-          setIcons(windy)
-        }
-         else if(iconString.toLowerCase().includes('clear')){
-          setIcons(sun)
-        }}
-  },[iconString])
+const MiniCard = ({ time, temp, iconString }) => {
+  const [icon, setIcons] = useState(null)
+
+  useEffect(() => {
+    if (iconString) {
+      let str = iconString.toLowerCase()
+      if (str.includes('cloud')) setIcons(cloud)
+      else if (str.includes('fog')) setIcons(fog)
+      else if (str.includes('rain')) setIcons(rain)
+      else if (str.includes('snow')) setIcons(snow)
+      else if (str.includes('storm') || str.includes('thunder')) setIcons(storm)
+      else if (str.includes('windy')) setIcons(windy)
+      else if (str.includes('clear')) setIcons(sun)
+      else setIcons(sun) // fallback icon
+    } else {
+      setIcons(sun) // fallback when iconString is undefined
+    }
+  }, [iconString])
+
   return (
     <div className='glassCard w-[10rem] h-[10rem] p-4 flex flex-col'>
       <p className='text-center'>
-        {
-          new Date(time).toLocaleDateString('en',{weekday:'long'}).split(" ")[0]
-        }
+        {new Date(time).toLocaleDateString('en', { weekday: 'long' })}
       </p>
       <hr />
       <div className='w-full flex justify-center items-center flex-1'>
-         <img src={icon} alt="weather-icon" className='w-[4rem] h-[4rem]' />
+        {icon && (
+          <img src={icon} alt="weather-icon" className='w-[4rem] h-[4rem]' />
+        )}
       </div>
-       <p className='text-center font-bold'>
+      <p className='text-center font-bold'>
         {temp} &deg;C
-       </p>
- 
-      
+      </p>
     </div>
   )
 }
